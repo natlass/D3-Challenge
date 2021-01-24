@@ -12,4 +12,4 @@ The data set included with the assignment is based on 2014 ACS 1-year estimates 
 
 ![alt text][logo]
 
-[logo]: pic/hrisk.png "health risk"
+[logo]: pics/hrisk.png "health risk"
