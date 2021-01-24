@@ -1,7 +1,8 @@
-// @TODO: YOUR CODE HERE!
+// Establish svg width and height
 var svgWidth = 960;
 var svgHeight = 500;
 
+// Establish margins
 var margin = {
   top: 20,
   right: 40,
@@ -134,8 +135,19 @@ var circlesGroup = chartGroup.selectAll("circle")
 .attr("cx", d => xLinearScale(d[chosenXAxis]))
 .attr("cy", d => yLinearScale(d.smokes))
 .attr("r", 20)
-.attr("fill", "pink")
-.attr("opacity", ".5");
+.attr("fill", "green")
+.attr("opacity", ".75");
+
+var textGroup = chartGroup.selectAll('text')
+.data(data)
+.enter()
+.append("text")
+.text(function(d) {
+  return d.abbr
+})
+.attr("dx", d => xLinearScale(d[chosenXAxis]) - 13)
+.attr("dy", d => yLinearScale(d.smokes) + 7)
+.attr('font-size', 12);
 
  // Create group for two x-axis labels
  var labelsGroup = chartGroup.append("g")
@@ -187,7 +199,7 @@ var circlesGroup = chartGroup.selectAll("circle")
        xAxis = renderAxes(xLinearScale, xAxis);
 
        // updates circles with new x values
-       circlesGroup = renderCircles(circlesGroup, xLinearScale, chosenXAxis);
+       circlesGroup = renderCircles(circlesGroup, xLinearScale, chosenXAxis, textGroup);
 
        // updates tooltips with new info
        circlesGroup = updateToolTip(chosenXAxis, circlesGroup);
